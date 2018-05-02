@@ -1271,7 +1271,7 @@ expand-range@^1.8.1:
   dependencies:
     fill-range "^2.1.0"
 
-expect@^22.4.3:
+expect@^22.1.0, expect@^22.4.3:
   version "22.4.3"
   resolved "https://registry.yarnpkg.com/expect/-/expect-22.4.3.tgz#d5a29d0a0e1fb2153557caef2674d4547e914674"
   dependencies:
@@ -2212,6 +2212,14 @@ jest-environment-node@^22.4.3:
     jest-mock "^22.4.3"
     jest-util "^22.4.3"
 
+jest-extended@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/jest-extended/-/jest-extended-0.7.1.tgz#f555fc22f4e65d9970a6164703f347f6c6abbe08"
+  dependencies:
+    chalk "^2.3.0"
+    expect "^22.1.0"
+    jest-matcher-utils "^22.0.0"
+
 jest-get-type@^22.4.3:
   version "22.4.3"
   resolved "https://registry.yarnpkg.com/jest-get-type/-/jest-get-type-22.4.3.tgz#e3a8504d8479342dd4420236b322869f18900ce4"
@@ -2250,7 +2258,7 @@ jest-leak-detector@^22.4.3:
   dependencies:
     pretty-format "^22.4.3"
 
-jest-matcher-utils@^22.4.3:
+jest-matcher-utils@^22.0.0, jest-matcher-utils@^22.4.3:
   version "22.4.3"
   resolved "https://registry.yarnpkg.com/jest-matcher-utils/-/jest-matcher-utils-22.4.3.tgz#4632fe428ebc73ebc194d3c7b65d37b161f710ff"
   dependencies:

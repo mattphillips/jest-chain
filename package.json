@@ -46,6 +46,7 @@
     "eslint-plugin-jest": "^21.15.1",
     "husky": "^0.14.3",
     "jest": "^22.4.3",
+    "jest-extended": "^0.7.1",
     "lint-staged": "^7.0.5",
     "prettier": "^1.12.1"
   },
@@ -60,5 +61,8 @@
       "transform-es2015-modules-commonjs",
       "transform-object-rest-spread"
     ]
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "jest-extended"
   }
 }
