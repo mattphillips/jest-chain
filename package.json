@@ -48,7 +48,8 @@
     "jest": "^22.4.3",
     "jest-extended": "^0.7.1",
     "lint-staged": "^7.0.5",
-    "prettier": "^1.12.1"
+    "prettier": "^1.12.1",
+    "pretty-format": "^22.4.3"
   },
   "lint-staged": {
     "*.js": [
@@ -63,6 +64,9 @@
     ]
   },
   "jest": {
+    "snapshotSerializers": [
+      "pretty-format/build/plugins/convert_ansi.js"
+    ],
     "setupTestFrameworkScriptFile": "jest-extended"
   }
 }
