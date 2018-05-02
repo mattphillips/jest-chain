@@ -4,6 +4,7 @@
   "description": "Chain Jest matchers together to create one expectation",
   "main": "dist/index.js",
   "scripts": {
+    "build": "babel src -d dist --ignore *.test.js",
     "contributor": "all-contributors add",
     "contributor:gen": "all-contributors generate",
     "lint": "eslint src",
@@ -34,7 +35,11 @@
   "homepage": "https://github.com/mattphillips/jest-chain#readme",
   "devDependencies": {
     "all-contributors-cli": "^4.11.1",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "codecov": "^3.0.1",
     "eslint": "^4.19.1",
     "eslint-plugin-import": "^2.11.0",
@@ -48,6 +53,12 @@
     "*.js": [
       "yarn prettier",
       "git add"
+    ]
+  },
+  "babel": {
+    "plugins": [
+      "transform-es2015-modules-commonjs",
+      "transform-object-rest-spread"
     ]
   }
 }
