@@ -1,0 +1,36 @@
+{
+  "name": "jest-chain",
+  "version": "1.0.0",
+  "description": "Chain Jest matchers together to create one expectation",
+  "main": "dist/index.js",
+  "scripts": {
+    "contributor": "all-contributors add",
+    "contributor:gen": "all-contributors generate",
+    "test": "jest",
+    "test:coverage": "yarn test -- --coverage",
+    "test:report": "codecov"
+  },
+  "keywords": [
+    "jest",
+    "matchers",
+    "chain",
+    "chainable",
+    "expect",
+    "test"
+  ],
+  "author": "Matt Phillips <matt@mattphillips.io> (mattphillips.io)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattphillips/jest-chain.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mattphillips/jest-chain/issues"
+  },
+  "homepage": "https://github.com/mattphillips/jest-chain#readme",
+  "devDependencies": {
+    "all-contributors-cli": "^4.11.1",
+    "codecov": "^3.0.1",
+    "jest": "^22.4.3"
+  }
+}
