@@ -1,9 +1,9 @@
 <div align="center">
   <h1>jest-chain</h1>
 
-  ⛓
+  🃏⛓
 
-  Chain Jest matchers together to create one expectation
+  Chain Jest matchers together to create one powerful assertion
 </div>
 
 <hr />
@@ -17,9 +17,38 @@
 [![Roadmap](https://img.shields.io/badge/%F0%9F%93%94-roadmap-CD9523.svg?style=flat-square)](https://github.com/mattphillips/jest-chain/blob/master/docs/ROADMAP.md)
 [![Examples](https://img.shields.io/badge/%F0%9F%92%A1-examples-ff615b.svg?style=flat-square)](https://github.com/mattphillips/jest-chain/blob/master/docs/EXAMPLES.md)
 
+ - 🍸 Less code duplication
+ - 🤗 Chain core and custom matchers together
+ - 👾 Expressive assertions
+ - 🚨 Fail fast assertions
+
 ## Problem
 
-## Solution
+Often in [Jest](https://facebook.github.io/jest/) when you are writing tests you may want to perform multiple assertions on the
+same variable. Currently to achieve this you have to write an individual `expect` for each
+assertion.
+
+For example:
+
+```js
+it('add 1 and 1', () => {
+  const actual = 1 + 1;
+  expect(actual).toBe(2);
+  expect(actual).toBeGreaterThan(1);
+  expect(actual).toBeLessThan(3);
+});
+```
+
+With `jest-chain` this can instead be written by chaining the matchers together:
+
+```js
+it('add 1 and 1', () => {
+  expect(1 + 1)
+    .toBe(2)
+    .toBeGreaterThan(1)
+    .toBeLessThan(3);
+});
+```
 
 ## Installation
 
@@ -35,7 +64,76 @@ yarn add -D jest-chain
 
 ## Setup
 
+Add `jest-chain` to your Jest `setupTestFrameworkScriptFile` configuration. [See for help](https://facebook.github.io/jest/docs/en/configuration.html#setuptestframeworkscriptfile-string)
+
+```json
+"jest": {
+  "setupTestFrameworkScriptFile": "jest-chain"
+}
+```
+
+If you are already using another test framework, like [jest-extended](https://github.com/jest-community/jest-extended), then you should create a test setup file and `require` each of the frameworks you are using (including `jest-chain` 😉)
+
+For example:
+
+```js
+// ./testSetup.js
+require('jest-chain');
+require('any other test framework libraries you are using');
+```
+
+Then in your Jest config:
+
+```json
+"jest": {
+  "setupTestFrameworkScriptFile": "./testSetup.js"
+}
+```
+
 ## Usage
+
+Use Jest's `expect` function the same way you would normally but with the ability to chain any
+matcher to another, including nested matchers such as: `.not`, `.resolves` and `.rejects`.
+
+`jest-chain` supports custom Jest matchers, like [jest-extended](https://github.com/jest-community/jest-extended), in the usual way with `expect.extend(matcher)`.
+Each of these custom matchers are also chainable.
+
+Some examples:
+
+```js
+expect([1, 2, 3])
+  .toHaveLength(3)
+  .toEqual([1, 2, 3]);
+```
+
+```js
+// with jest-extended
+expect([1, 2, 3])
+  .toBeArray()
+  .toBeArrayOfSize(3)
+  .toEqual([1, 2, 3])
+  .toIncludeAnyMembers([1, 2]);
+
+expect(100)
+  .toBePositive()
+  .toBeGreaterThan(99)
+  .toBeLessThan(101)
+  .toBeNumber()
+  .not.toBeNaN()
+  .toBe(100);
+
+expect('hello world')
+  .toBeString()
+  .toEqualCaseInsensitive('HELLO WORLD')
+  .toStartWith('hello')
+  .toEndWith('world')
+  .not.toInclude('!')
+  .toBe('hello world');
+```
+
+**Matcher failures will fail fast from left to right, they have no impact on each other. 🎉**
+
+_Note: `jest-chain` does not currently support asymmetric matcher chaining, if you want this please send a PR_ 😊
 
 ## Contributors
 

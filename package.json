@@ -1,23 +1,29 @@
 {
   "name": "jest-chain",
-  "version": "1.0.0",
-  "description": "Chain Jest matchers together to create one expectation",
+  "version": "0.0.0",
+  "description": "Chain Jest matchers together to create one powerful assertion",
   "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "babel src -d dist --ignore *.test.js",
     "contributor": "all-contributors add",
     "contributor:gen": "all-contributors generate",
     "lint": "eslint src",
-    "lint:fix": "yarn lint -- --fix",
+    "lint:fix": "yarn lint --fix",
     "precommit": "lint-staged",
     "prettier": "prettier 'src/**/*.js' --write --single-quote=true --print-width=120",
     "test": "jest",
-    "test:coverage": "yarn test -- --coverage",
+    "test:coverage": "yarn test --coverage",
     "test:report": "codecov"
   },
   "keywords": [
     "jest",
     "matchers",
+    "assertions",
     "chain",
     "chainable",
     "expect",
