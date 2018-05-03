@@ -1,6 +1,6 @@
 {
   "name": "jest-chain",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Chain Jest matchers together to create one powerful assertion",
   "main": "dist/index.js",
   "files": [
