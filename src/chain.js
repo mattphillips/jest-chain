@@ -19,6 +19,15 @@ const chainMatchers = (matchers, originalMatchers = matchers) => {
 
 export default expect => {
   // proxy the expect function
-  const expectProxy = (...args) => chainMatchers(expect(...args)); // partially apply expect to get all matchers and chain them
-  return Object.assign(expectProxy, expect); // clone additional properties on expect
+  let expectProxy = Object.assign(
+    (...args) => chainMatchers(expect(...args)), // partially apply expect to get all matchers and chain them
+    expect // clone additional properties on expect
+  );
+
+  expectProxy.extend = o => {
+    expect.extend(o); // add new matchers to expect
+    expectProxy = Object.assign(expectProxy, expect); // clone new asymmetric matchers
+  };
+
+  return expectProxy;
 };

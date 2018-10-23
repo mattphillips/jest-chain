@@ -157,4 +157,34 @@ describe('.chain', () => {
     expect(notToEqual).toHaveBeenCalledTimes(1);
     expect(notToEqual).toHaveBeenCalledWith('not bar');
   });
+
+  it('calls original expect.extend when custom matcher is registered', () => {
+    const extendMock = jest.fn();
+    const expectMock = jest.fn();
+    expectMock.extend = extendMock;
+    const newMatcher = { newMatcher: 'woo' };
+
+    chain(expectMock).extend(newMatcher);
+
+    expect(extendMock).toHaveBeenCalledTimes(1);
+    expect(extendMock).toHaveBeenCalledWith(newMatcher);
+  });
+
+  it('sets new asymmetric matchers when custom matcher is registered with expect.extend', () => {
+    const expectMock = () => {};
+    const extendMock = jest.fn(o => Object.assign(expectMock, o));
+    expectMock.a = 'a';
+    expectMock.extend = extendMock;
+    const newMatcher = { newMatcher: 'woo' };
+
+    const actual = chain(expectMock);
+
+    expect(actual).toContainAllKeys(['a', 'extend']);
+
+    actual.extend(newMatcher);
+
+    expect(extendMock).toHaveBeenCalledTimes(1);
+    expect(extendMock).toHaveBeenCalledWith(newMatcher);
+    expect(actual).toContainAllKeys(['a', 'extend', 'newMatcher']);
+  });
 });
