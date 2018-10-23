@@ -187,4 +187,17 @@ describe('.chain', () => {
     expect(extendMock).toHaveBeenCalledWith(newMatcher);
     expect(actual).toContainAllKeys(['a', 'extend', 'newMatcher']);
   });
+
+  it('throws error when matcher fails', () => {
+    expect.assertions(1);
+    const expectMock = jest.fn(() => ({
+      toBe: () => {
+        const error = new Error('');
+        error.matcherResult = { message: () => 'blah', pass: false };
+        throw error;
+      }
+    }));
+
+    expect(() => chain(expectMock)('hello').toBe('hi')).toThrowErrorMatchingInlineSnapshot('"blah"');
+  });
 });
