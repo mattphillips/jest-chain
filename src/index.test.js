@@ -55,4 +55,33 @@ describe('jest-chain', () => {
       ).toThrowErrorMatchingSnapshot();
     });
   });
+
+  describe('supports custom matchers registered after jest-chain', () => {
+    expect.extend({
+      toBeDivisibleBy(received, argument) {
+        const pass = received % argument == 0;
+        const message = pass
+          ? () => `expected ${received} not to be divisible by ${argument}`
+          : () => `expected ${received} to be divisible by ${argument}`;
+        return { message, pass };
+      }
+    });
+
+    it('chains new custom matchers with existing ones', () => {
+      expect(100).toBeDivisibleBy(2);
+      expect(101).not.toBeDivisibleBy(2);
+      expect(100)
+        .toBeDivisibleBy(2)
+        .toBePositive()
+        .not.toBeNegative()
+        .toBe(100);
+    });
+
+    it('supports custom asymmetric matchers', () => {
+      expect({ apples: 6, bananas: 3 }).toEqual({
+        apples: expect.toBeDivisibleBy(2),
+        bananas: expect.not.toBeDivisibleBy(2)
+      });
+    });
+  });
 });
