@@ -8,6 +8,7 @@
     "README.md",
     "LICENSE"
   ],
+  "types": "./types/index.d.ts",
   "scripts": {
     "build": "babel src -d dist --ignore *.test.js",
     "contributor": "all-contributors add",
@@ -41,6 +42,7 @@
   },
   "homepage": "https://github.com/mattphillips/jest-chain#readme",
   "devDependencies": {
+    "@types/jest": "^23.3.7",
     "all-contributors-cli": "^4.11.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
