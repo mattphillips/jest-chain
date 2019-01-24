@@ -1,9 +1,10 @@
 <div align="center">
   <h1>jest-chain</h1>
 
-  🃏⛓
+🃏⛓
 
-  Chain Jest matchers together to create one powerful assertion
+Chain Jest matchers together to create one powerful assertion
+
 </div>
 
 <hr />
@@ -17,10 +18,10 @@
 [![Roadmap](https://img.shields.io/badge/%F0%9F%93%94-roadmap-CD9523.svg?style=flat-square)](https://github.com/mattphillips/jest-chain/blob/master/docs/ROADMAP.md)
 [![Examples](https://img.shields.io/badge/%F0%9F%92%A1-examples-ff615b.svg?style=flat-square)](https://github.com/mattphillips/jest-chain/blob/master/docs/EXAMPLES.md)
 
- - 🍸 Less code duplication
- - 🤗 Chain core and custom matchers together
- - 👾 Expressive assertions
- - 🚨 Fail fast assertions
+* 🍸 Less code duplication
+* 🤗 Chain core and custom matchers together
+* 👾 Expressive assertions
+* 🚨 Fail fast assertions
 
 ## Problem
 
@@ -53,11 +54,13 @@ it('add 1 and 1', () => {
 ## Installation
 
 With npm:
+
 ```sh
 npm install --save-dev jest-chain
 ```
 
 With yarn:
+
 ```sh
 yarn add -D jest-chain
 ```
@@ -73,6 +76,12 @@ Add `jest-chain` to your Jest `setupTestFrameworkScriptFile` configuration. [See
 ```
 
 If you are already using another test framework, like [jest-extended](https://github.com/jest-community/jest-extended), then you should create a test setup file and `require` each of the frameworks you are using (including `jest-chain` 😉)
+
+## Typescript
+
+If your editor does not recognise the chained jest matchers, add a `global.d.ts` file to your project with:
+
+import 'jest-chain';
 
 For example:
 
@@ -138,9 +147,11 @@ _Note: `jest-chain` does not currently support asymmetric matcher chaining, if y
 ## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+
 <!-- prettier-ignore -->
 | [<img src="https://avatars0.githubusercontent.com/u/5610087?v=4" width="100px;"/><br /><sub><b>Matt Phillips</b></sub>](http://mattphillips.io)<br />[💻](https://github.com/mattphillips/jest-chain/commits?author=mattphillips "Code") [📖](https://github.com/mattphillips/jest-chain/commits?author=mattphillips "Documentation") [💡](#example-mattphillips "Examples") [🤔](#ideas-mattphillips "Ideas, Planning, & Feedback") [🚇](#infra-mattphillips "Infrastructure (Hosting, Build-Tools, etc)") [⚠️](https://github.com/mattphillips/jest-chain/commits?author=mattphillips "Tests") |
 | :---: |
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## LICENSE
