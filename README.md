@@ -81,7 +81,10 @@ If you are already using another test framework, like [jest-extended](https://gi
 
 If your editor does not recognise the chained jest matchers, add a `global.d.ts` file to your project with:
 
+
+```js
 import 'jest-chain';
+```
 
 For example:
 
