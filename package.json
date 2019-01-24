@@ -1,9 +1,14 @@
 {
   "name": "jest-chain",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Chain Jest matchers together to create one powerful assertion",
   "main": "dist/index.js",
-  "files": ["dist", "README.md", "LICENSE", "types/index.d.ts"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "types/index.d.ts"
+  ],
   "types": "./types/index.d.ts",
   "scripts": {
     "build": "babel src -d dist --ignore *.test.js",
@@ -18,7 +23,15 @@
     "test:coverage": "yarn test --coverage",
     "test:report": "codecov"
   },
-  "keywords": ["jest", "matchers", "assertions", "chain", "chainable", "expect", "test"],
+  "keywords": [
+    "jest",
+    "matchers",
+    "assertions",
+    "chain",
+    "chainable",
+    "expect",
+    "test"
+  ],
   "author": "Matt Phillips <matt@mattphillips.io> (mattphillips.io)",
   "license": "MIT",
   "repository": {
@@ -49,13 +62,21 @@
     "pretty-format": "^22.4.3"
   },
   "lint-staged": {
-    "*.js": ["yarn prettier", "git add"]
+    "*.js": [
+      "yarn prettier",
+      "git add"
+    ]
   },
   "babel": {
-    "plugins": ["transform-es2015-modules-commonjs", "transform-object-rest-spread"]
+    "plugins": [
+      "transform-es2015-modules-commonjs",
+      "transform-object-rest-spread"
+    ]
   },
   "jest": {
-    "snapshotSerializers": ["pretty-format/build/plugins/convert_ansi.js"],
+    "snapshotSerializers": [
+      "pretty-format/build/plugins/convert_ansi.js"
+    ],
     "setupTestFrameworkScriptFile": "jest-extended"
   }
 }
