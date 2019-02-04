@@ -67,7 +67,17 @@ yarn add -D jest-chain
 
 ## Setup
 
-Add `jest-chain` to your Jest `setupTestFrameworkScriptFile` configuration. [See for help](https://facebook.github.io/jest/docs/en/configuration.html#setuptestframeworkscriptfile-string)
+Add `jest-chain` to your Jest `setupFilesAfterEnv` configuration. [See for help](https://jestjs.io/docs/en/next/configuration#setupfilesafterenv-array)
+
+### Jest >v24
+
+```json
+"jest": {
+  "setupFilesAfterEnv": ["jest-chain"]
+}
+```
+
+### Jest <v23
 
 ```json
 "jest": {
@@ -76,15 +86,6 @@ Add `jest-chain` to your Jest `setupTestFrameworkScriptFile` configuration. [See
 ```
 
 If you are already using another test framework, like [jest-extended](https://github.com/jest-community/jest-extended), then you should create a test setup file and `require` each of the frameworks you are using (including `jest-chain` 😉)
-
-## Typescript
-
-If your editor does not recognise the chained jest matchers, add a `global.d.ts` file to your project with:
-
-
-```js
-import 'jest-chain';
-```
 
 For example:
 
@@ -101,6 +102,17 @@ Then in your Jest config:
   "setupTestFrameworkScriptFile": "./testSetup.js"
 }
 ```
+
+## Typescript
+
+If your editor does not recognise the chained jest matchers, add a `global.d.ts` file to your project with:
+
+
+```js
+import 'jest-chain';
+```
+
+__Note:__ if you are using any other custom matcher libraries then make sure that the `jest-chain` type import is at the bottom so that the types can chain core matchers with your customer matcher library.
 
 ## Usage
 
