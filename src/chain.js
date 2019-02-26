@@ -1,9 +1,8 @@
 const chainMatchers = (matchers, originalMatchers = matchers) => {
-  return Object.keys(matchers).reduce((acc, name) => {
+  const mappedMatchers = Object.keys(matchers).map(name => {
     const matcher = matchers[name];
     if (typeof matcher === 'function') {
       return {
-        ...acc,
         [name]: (...args) => {
           matcher(...args); // run matcher
           return chainMatchers(originalMatchers); // chain the original matchers again
@@ -11,10 +10,10 @@ const chainMatchers = (matchers, originalMatchers = matchers) => {
       };
     }
     return {
-      ...acc,
       [name]: chainMatchers(matcher, originalMatchers) // recurse on .not/.resolves/.rejects
     };
-  }, {});
+  });
+  return Object.assign({}, ...mappedMatchers);
 };
 
 export default expect => {
