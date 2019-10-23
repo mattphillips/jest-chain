@@ -9,14 +9,14 @@ class JestAssertionError extends Error {
   }
 }
 
-const chainMatchers = (matchers, originalMatchers = matchers) => {
+const chainMatchers = (matchers, originalMatchers = matchers, value = undefined) => {
   const mappedMatchers = Object.keys(matchers).map(name => {
     const matcher = matchers[name];
     if (typeof matcher === 'function') {
       const newMatcher = (...args) => {
         try {
-          matcher(...args); // run matcher
-          return chainMatchers(originalMatchers); // chain the original matchers again
+          const v = matcher(...args); // run matcher
+          return chainMatchers(originalMatchers, originalMatchers, v); // chain the original matchers again
         } catch (error) {
           throw new JestAssertionError(error.matcherResult, newMatcher);
         }
@@ -27,7 +27,8 @@ const chainMatchers = (matchers, originalMatchers = matchers) => {
       [name]: chainMatchers(matcher, originalMatchers) // recurse on .not/.resolves/.rejects
     };
   });
-  return Object.assign({}, ...mappedMatchers);
+  const result = Promise.resolve(value && typeof value.then === 'function' ? value : undefined);
+  return Object.assign(result, ...mappedMatchers);
 };
 
 export default expect => {
