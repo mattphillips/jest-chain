@@ -1,5 +1,5 @@
 declare namespace jest {
-  type ChainedMatchers<R> = { [K in keyof jest.Matchers<R>]: jest.Matchers<ChainedMatchers<R>>[K] };
+  type ChainedMatchers<T> = jest.JestMatchersShape<Matchers<ChainedMatchers<T>, T>, Matchers<Promise<ChainedMatchers<T>>, T>>;
 
   interface Expect {
     /**
@@ -8,6 +8,6 @@ declare namespace jest {
      *
      * @param actual The value to apply matchers against.
      */
-    <T = any>(actual: T): ChainedMatchers<T>;
+      <T = any>(actual: T): ChainedMatchers<T>;
   }
 }

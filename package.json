@@ -43,7 +43,7 @@
   },
   "homepage": "https://github.com/mattphillips/jest-chain#readme",
   "devDependencies": {
-    "@types/jest": "^23.3.7",
+    "@types/jest": "^24.9.0",
     "all-contributors-cli": "^4.11.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
