@@ -1,5 +1,5 @@
 declare namespace jest {
-  type ChainedMatchers<T> = jest.JestMatchersShape<Matchers<ChainedMatchers<T>, T>, Matchers<Promise<ChainedMatchers<T>>, T>>;
+  interface ChainedMatchers<T> extends jest.JestMatchersShape<Matchers<ChainedMatchers<T>, T>, Matchers<Promise<ChainedMatchers<T>>, T>> {}
 
   interface Expect {
     /**
