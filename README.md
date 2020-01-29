@@ -159,16 +159,6 @@ expect('hello world')
 
 _Note: `jest-chain` does not currently support asymmetric matcher chaining, if you want this please send a PR_ 😊
 
-## Contributors
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-
-<!-- prettier-ignore -->
-| [<img src="https://avatars0.githubusercontent.com/u/5610087?v=4" width="100px;"/><br /><sub><b>Matt Phillips</b></sub>](http://mattphillips.io)<br />[💻](https://github.com/mattphillips/jest-chain/commits?author=mattphillips "Code") [📖](https://github.com/mattphillips/jest-chain/commits?author=mattphillips "Documentation") [💡](#example-mattphillips "Examples") [🤔](#ideas-mattphillips "Ideas, Planning, & Feedback") [🚇](#infra-mattphillips "Infrastructure (Hosting, Build-Tools, etc)") [⚠️](https://github.com/mattphillips/jest-chain/commits?author=mattphillips "Tests") |
-| :---: |
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
 ## LICENSE
 
 [MIT](/LICENSE)
