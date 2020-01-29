@@ -1,3 +1,5 @@
+/// <reference types="jest" />
+
 declare namespace jest {
   type ChainedMatchers<R> = { [K in keyof jest.Matchers<R>]: jest.Matchers<ChainedMatchers<R>>[K] };
 
