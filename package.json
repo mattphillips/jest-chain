@@ -11,7 +11,7 @@
   ],
   "types": "./types/index.d.ts",
   "scripts": {
-    "build": "babel src -d dist --ignore *.test.js",
+    "build": "babel src -d dist --ignore src/**/*.test.js",
     "contributor": "all-contributors add",
     "contributor:gen": "all-contributors generate",
     "lint": "eslint src",
@@ -43,20 +43,19 @@
   },
   "homepage": "https://github.com/mattphillips/jest-chain#readme",
   "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
+    "@babel/plugin-transform-modules-commonjs": "^7.8.3",
     "@types/jest": "^25.1.0",
-    "all-contributors-cli": "^4.11.1",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "codecov": "^3.0.1",
     "eslint": "^4.19.1",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jest": "^21.15.1",
     "husky": "^0.14.3",
-    "jest": "^23.6.0",
-    "jest-extended": "^0.7.1",
+    "jest": "^25.1.0",
+    "jest-extended": "^0.11.5",
     "lint-staged": "^7.0.5",
     "prettier": "^1.12.1",
     "pretty-format": "^22.4.3"
@@ -69,14 +68,16 @@
   },
   "babel": {
     "plugins": [
-      "transform-es2015-modules-commonjs",
-      "transform-object-rest-spread"
+      "@babel/plugin-proposal-object-rest-spread",
+      "@babel/plugin-transform-modules-commonjs"
     ]
   },
   "jest": {
     "snapshotSerializers": [
       "pretty-format/build/plugins/convert_ansi.js"
     ],
-    "setupTestFrameworkScriptFile": "jest-extended"
+    "setupFilesAfterEnv": [
+      "jest-extended"
+    ]
   }
 }
