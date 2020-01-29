@@ -2,7 +2,7 @@ import chain from './chain';
 
 const noop = () => {};
 
-describe('.chain', () => {
+xdescribe('.chain', () => {
   it('returns function with identical properties to given expect object', () => {
     const expectMock = jest.fn();
     expectMock.a = 'a';

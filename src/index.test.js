@@ -84,4 +84,30 @@ describe('jest-chain', () => {
       });
     });
   });
+
+  describe('Implicit returns', () => {
+    it('can be used as the direct return value for a test function', () =>
+      expect(3)
+        .toBeGreaterThan(1)
+        .toBeLessThan(5));
+  });
+
+  describe('Promise chaining', () => {
+    fit('chains resolved promises', async () => {
+      await expect(Promise.resolve(7))
+        .resolves.toBeLessThan(1)
+        .resolves.toBeLessThan(5);
+    });
+
+    it('chains rejected promises', () =>
+      expect(Promise.reject(new Error('octopus')))
+        .rejects.toThrow('octopus')
+        .rejects.toEqual(new Error('octopus')));
+
+    it('chains rejected promises with async await syntax', async () => {
+      await expect(Promise.reject(new Error('octopus')))
+        .rejects.toThrow('octopus')
+        .rejects.toEqual(new Error('octopus'));
+    });
+  });
 });

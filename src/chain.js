@@ -1,19 +1,31 @@
-const chainMatchers = (matchers, originalMatchers = matchers) => {
+const chainMatchers = (matchers, originalMatchers = matchers, value = undefined) => {
+  // map over matchers and then merge using Object.assign's var args capibility
   const mappedMatchers = Object.keys(matchers).map(name => {
     const matcher = matchers[name];
     if (typeof matcher === 'function') {
+      const newMatcher = (...args) => {
+        const v = matcher(...args); // run matcher
+        return chainMatchers(originalMatchers, originalMatchers, v); // chain the original matchers again
+      };
       return {
-        [name]: (...args) => {
-          matcher(...args); // run matcher
-          return chainMatchers(originalMatchers); // chain the original matchers again
-        }
+        [name]: newMatcher
       };
     }
     return {
       [name]: chainMatchers(matcher, originalMatchers) // recurse on .not/.resolves/.rejects
     };
   });
-  return Object.assign({}, ...mappedMatchers);
+
+  /*
+   *Hack*: Set matchers onto a promise as tests require a return type of Promise/void - the result of chaining shouldn't really be treated as a promise though
+
+   See:
+    - https://github.com/mattphillips/jest-chain/issues/8
+    - https://github.com/mattphillips/jest-chain/issues/1
+    - https://github.com/facebook/jest/pull/6517
+  */
+  const p = Promise.resolve(value && typeof value.then === 'function' ? value : undefined);
+  return Object.assign(p, ...mappedMatchers);
 };
 
 export default expect => {
