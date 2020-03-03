@@ -18,7 +18,11 @@ const chainMatchers = (matchers, originalMatchers = matchers) => {
           matcher(...args); // run matcher
           return chainMatchers(originalMatchers); // chain the original matchers again
         } catch (error) {
-          throw new JestAssertionError(error.matcherResult, newMatcher);
+          if (error.matcherResult) {
+            throw new JestAssertionError(error.matcherResult, newMatcher);
+          }
+
+          throw error; // throw error if it isn't a match error
         }
       };
       return { [name]: newMatcher };
