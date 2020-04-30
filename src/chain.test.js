@@ -200,4 +200,19 @@ describe('.chain', () => {
 
     expect(() => chain(expectMock)('hello').toBe('hi')).toThrowErrorMatchingInlineSnapshot('"blah"');
   });
+
+  it('can be used as the direct return value for a test function', () =>
+    chain(expect)(3)
+      .toBeGreaterThan(1)
+      .toBeLessThan(5));
+
+  it('can be used with resolves', () =>
+    chain(expect)(Promise.resolve(7))
+      .resolves.toBeLessThan(10)
+      .resolves.not.toBeLessThan(5));
+
+  it('can be used with rejects', () =>
+    chain(expect)(Promise.reject(7))
+      .rejects.toBeLessThan(10)
+      .rejects.not.toBeLessThan(5));
 });
