@@ -193,7 +193,7 @@ describe('.chain', () => {
     const expectMock = jest.fn(() => ({
       toBe: () => {
         const error = new Error('');
-        error.matcherResult = { message: () => 'blah', pass: false };
+        error.matcherResult = { message: 'blah', pass: false };
         throw error;
       }
     }));
