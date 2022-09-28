@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "baseUrl": "./",
+    "esModuleInterop": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noEmit": true
+  },
+
+  "files": ["node_modules/jest-chain/types/index.d.ts"],
+  "include": ["src/**/*", "test/**/*"],
+  "exclude": ["node_modules"]
+}
