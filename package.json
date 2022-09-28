@@ -55,9 +55,27 @@
     ]
   },
   "jest": {
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      ".idea",
+      "examples",
+      "/node_modules/",
+      "/fixtures/",
+      "/dist/"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "snapshotFormat": {
+      "escapeString": false,
+      "printBasicPrototype": false
+    },
     "snapshotSerializers": [
       "jest-serializer-ansi-escapes"
     ],
+    "moduleNameMapper": {
+      "src/(.*)": "<rootDir>/src/$1"
+    },
     "setupFilesAfterEnv": [
       "jest-extended/all"
     ]
