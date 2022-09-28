@@ -1,7 +1,7 @@
 class JestAssertionError extends Error {
-  constructor(resultMessage, callsite) {
-    super(resultMessage);
-    this.matcherResult = resultMessage;
+  constructor(result, callsite) {
+    super(typeof result.message === 'function' ? result.message() : result.message);
+    this.matcherResult = result;
 
     if (Error.captureStackTrace) {
       Error.captureStackTrace(this, callsite);
@@ -18,7 +18,12 @@ const chainMatchers = (matchers, originalMatchers = matchers) => {
           matcher(...args); // run matcher
           return chainMatchers(originalMatchers); // chain the original matchers again
         } catch (error) {
-          throw new JestAssertionError(error.matcherResult.message, newMatcher);
+          // TODO: add test for this case
+          if (!error.matcherResult) {
+            throw error;
+          } else {
+            throw new JestAssertionError(error.matcherResult, newMatcher);
+          }
         }
       };
       return { [name]: newMatcher };
