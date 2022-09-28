@@ -1,22 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`jest-chain fails fast throws error from first matcher: toBe when 1 != 2 1`] = `
-"<dim>expect(</><red>received</><dim>).</>toBe<dim>(</><green>expected</><dim>) // Object.is equality</>
+"<dim>expect(</intensity><red>received</color><dim>).</intensity>toBe<dim>(</intensity><green>expected</color><dim>) // Object.is equality</intensity>
 
-Expected: <green>2</>
-Received: <red>1</>"
+Expected: <green>2</color>
+Received: <red>1</color>"
 `;
 
 exports[`jest-chain fails fast throws error from second matcher: toBeGreaterThan when 1 !> 1 1`] = `
-"<dim>expect(</><red>received</><dim>).</>toBeGreaterThan<dim>(</><green>expected</><dim>)</>
+"<dim>expect(</intensity><red>received</color><dim>).</intensity>toBeGreaterThan<dim>(</intensity><green>expected</color><dim>)</intensity>
 
-Expected: > <green>1</>
-Received:   <red>1</>"
+Expected: > <green>1</color>
+Received:   <red>1</color>"
 `;
 
 exports[`jest-chain fails fast throws error from second matcher: toBeLessThan when 1 !< 1 1`] = `
-"<dim>expect(</><red>received</><dim>).</>toBeLessThan<dim>(</><green>expected</><dim>)</>
+"<dim>expect(</intensity><red>received</color><dim>).</intensity>toBeLessThan<dim>(</intensity><green>expected</color><dim>)</intensity>
 
-Expected: < <green>1</>
-Received:   <red>1</>"
+Expected: < <green>1</color>
+Received:   <red>1</color>"
 `;
