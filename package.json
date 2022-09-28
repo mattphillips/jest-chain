@@ -12,12 +12,9 @@
   "types": "./types/index.d.ts",
   "scripts": {
     "build": "babel src -d dist --ignore src/**/*.test.js",
-    "contributor": "all-contributors add",
-    "contributor:gen": "all-contributors generate",
     "prepublishOnly": "yarn build",
     "test": "jest",
-    "test:coverage": "yarn test --coverage",
-    "test:report": "codecov"
+    "test:coverage": "yarn test --coverage"
   },
   "keywords": [
     "jest",
