@@ -9,7 +9,7 @@ Chain Jest matchers together to create one powerful assertion
 
 <hr />
 
-[![Build Status](https://img.shields.io/travis/mattphillips/jest-chain.svg?style=flat-square)](https://travis-ci.org/mattphillips/jest-chain)
+[![Build Status](https://img.shields.io/github/workflow/status/mattphillips/jest-chain/GitHub%20CI/main?style=flat-square)](https://github.com/mattphillips/jest-chain/actions/workflows/ci.yaml)
 [![Code Coverage](https://img.shields.io/codecov/c/github/mattphillips/jest-chain.svg?style=flat-square)](https://codecov.io/github/mattphillips/jest-chain)
 [![version](https://img.shields.io/npm/v/jest-chain.svg?style=flat-square)](https://www.npmjs.com/package/jest-chain)
 [![downloads](https://img.shields.io/npm/dm/jest-chain.svg?style=flat-square)](http://npm-stat.com/charts.html?package=jest-chain&from=2017-09-14)
