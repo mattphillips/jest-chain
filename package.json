@@ -14,10 +14,7 @@
     "build": "babel src -d dist --ignore src/**/*.test.js",
     "contributor": "all-contributors add",
     "contributor:gen": "all-contributors generate",
-    "lint:fix": "yarn lint --fix",
-    "precommit": "lint-staged",
     "prepublishOnly": "yarn build",
-    "prettier": "prettier 'src/**/*.js' --write --single-quote=true --print-width=120",
     "test": "jest",
     "test:coverage": "yarn test --coverage",
     "test:report": "codecov"
@@ -47,18 +44,9 @@
     "@babel/plugin-transform-modules-commonjs": "^7.8.3",
     "@types/jest": "^26.0.23",
     "codecov": "^3.0.1",
-    "husky": "^0.14.3",
     "jest": "^27.0.5",
     "jest-extended": "^0.11.5",
-    "lint-staged": "^7.0.5",
-    "prettier": "^1.12.1",
     "pretty-format": "^22.4.3"
-  },
-  "lint-staged": {
-    "*.js": [
-      "yarn prettier",
-      "git add"
-    ]
   },
   "babel": {
     "plugins": [

@@ -50,7 +50,7 @@ jobs:
           FORCE_COLOR: true
       - uses: codecov/codecov-action@v3
 
-  lint:
+  typecheck:
     name: Run TypeScript compiler
     runs-on: ubuntu-latest
     steps:
