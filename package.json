@@ -3,13 +3,11 @@
   "version": "1.1.5",
   "description": "Chain Jest matchers together to create one powerful assertion",
   "main": "dist/index.js",
+  "types": "types/index.d.ts",
   "files": [
     "dist",
-    "README.md",
-    "LICENSE",
-    "types/index.d.ts"
+    "types"
   ],
-  "types": "./types/index.d.ts",
   "scripts": {
     "build": "babel src --out-dir dist --ignore 'src/**/*.test.js'",
     "prepublishOnly": "yarn build",
