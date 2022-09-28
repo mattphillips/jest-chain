@@ -53,9 +53,8 @@ describe("jest-chain", () => {
   });
 
   // I don't think this is something that needs solving in this library
-  it.failing("can be used as the direct return value for a test function", () =>
-    expect(3).toBeGreaterThan(1).toBeLessThan(5)
-  );
+  it.skip("can be used as the direct return value for a test function", () =>
+    expect(3).toBeGreaterThan(1).toBeLessThan(5));
 
   describe("Supports promises", () => {
     it("can be used with resolves", () =>
