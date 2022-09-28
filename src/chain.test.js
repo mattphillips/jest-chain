@@ -1,13 +1,13 @@
-import chain from './chain';
+import chain from "./chain";
 
 const noop = () => {};
 
-describe('.chain', () => {
-  it('returns function with identical properties to given expect object', () => {
+describe(".chain", () => {
+  it("returns function with identical properties to given expect object", () => {
     const expectMock = jest.fn();
-    expectMock.a = 'a';
+    expectMock.a = "a";
     expectMock.fn = () => {};
-    expectMock.obj = { foo: 'bar' };
+    expectMock.obj = { foo: "bar" };
 
     const actual = chain(expectMock);
 
@@ -16,114 +16,111 @@ describe('.chain', () => {
     expect(actual.obj).toBe(expectMock.obj);
   });
 
-  it('calls given expect when returned expect proxy is invoked', () => {
+  it("calls given expect when returned expect proxy is invoked", () => {
     const expectMock = jest.fn(() => ({}));
 
-    chain(expectMock)('hello');
+    chain(expectMock)("hello");
 
     expect(expectMock).toHaveBeenCalledTimes(1);
-    expect(expectMock).toHaveBeenCalledWith('hello');
+    expect(expectMock).toHaveBeenCalledWith("hello");
   });
 
-  it('returns an object with identical keys as given expect when proxy expect is invoked', () => {
+  it("returns an object with identical keys as given expect when proxy expect is invoked", () => {
     const expectMock = jest.fn(() => ({
       toBe: noop,
-      toEqual: noop
+      toEqual: noop,
     }));
 
-    const actual = chain(expectMock)('hello');
+    const actual = chain(expectMock)("hello");
 
-    expect(actual).toContainAllKeys(['toBe', 'toEqual']);
+    expect(actual).toContainAllKeys(["toBe", "toEqual"]);
   });
 
-  it('returns an object with identical nested keys as given expect when proxy expect is invoked', () => {
+  it("returns an object with identical nested keys as given expect when proxy expect is invoked", () => {
     const expectMock = jest.fn(() => ({
       toBe: noop,
       toEqual: noop,
       not: {
         toBe: noop,
-        toEqual: noop
-      }
+        toEqual: noop,
+      },
     }));
 
-    const actual = chain(expectMock)('hello');
+    const actual = chain(expectMock)("hello");
 
-    expect(actual.not).toContainAllKeys(['toBe', 'toEqual']);
+    expect(actual.not).toContainAllKeys(["toBe", "toEqual"]);
   });
 
-  it('calls original matcher when invoked', () => {
+  it("calls original matcher when invoked", () => {
     const matcherMock = jest.fn();
     const expectMock = jest.fn(() => ({
-      toBe: matcherMock
+      toBe: matcherMock,
     }));
 
-    chain(expectMock)('hello').toBe('world');
+    chain(expectMock)("hello").toBe("world");
 
     expect(matcherMock).toHaveBeenCalledTimes(1);
-    expect(matcherMock).toHaveBeenCalledWith('world');
+    expect(matcherMock).toHaveBeenCalledWith("world");
   });
 
-  it('returns matchers when matcher is invoked', () => {
+  it("returns matchers when matcher is invoked", () => {
     const expectMock = jest.fn(() => ({
       toBe: noop,
-      toEqual: noop
+      toEqual: noop,
     }));
 
-    const actual = chain(expectMock)('hello').toBe('world');
+    const actual = chain(expectMock)("hello").toBe("world");
 
-    expect(actual).toContainAllKeys(['toBe', 'toEqual']);
+    expect(actual).toContainAllKeys(["toBe", "toEqual"]);
   });
 
-  it('calls original matcher functions when matchers are chained', () => {
+  it("calls original matcher functions when matchers are chained", () => {
     const toBe = jest.fn();
     const toEqual = jest.fn();
     const expectMock = jest.fn(() => ({
       toBe,
-      toEqual
+      toEqual,
     }));
 
-    chain(expectMock)('hello')
-      .toBe('foo')
-      .toEqual('bar')
-      .toBe('baz');
+    chain(expectMock)("hello").toBe("foo").toEqual("bar").toBe("baz");
 
     expect(toBe).toHaveBeenCalledTimes(2);
-    expect(toBe).toHaveBeenCalledWith('foo');
-    expect(toBe).toHaveBeenCalledWith('baz');
+    expect(toBe).toHaveBeenCalledWith("foo");
+    expect(toBe).toHaveBeenCalledWith("baz");
     expect(toEqual).toHaveBeenCalledTimes(1);
-    expect(toEqual).toHaveBeenCalledWith('bar');
+    expect(toEqual).toHaveBeenCalledWith("bar");
   });
 
-  it('calls original nested matcher when invoked', () => {
+  it("calls original nested matcher when invoked", () => {
     const matcherMock = jest.fn();
     const expectMock = jest.fn(() => ({
       toBe: noop,
       not: {
-        toBe: matcherMock
-      }
+        toBe: matcherMock,
+      },
     }));
 
-    chain(expectMock)('hello').not.toBe('world');
+    chain(expectMock)("hello").not.toBe("world");
 
     expect(matcherMock).toHaveBeenCalledTimes(1);
-    expect(matcherMock).toHaveBeenCalledWith('world');
+    expect(matcherMock).toHaveBeenCalledWith("world");
   });
 
-  it('returns matchers when nested matcher is invoked', () => {
+  it("returns matchers when nested matcher is invoked", () => {
     const expectMock = jest.fn(() => ({
       toBe: noop,
       not: {
-        toBe: noop
-      }
+        toBe: noop,
+      },
     }));
 
-    const actual = chain(expectMock)('hello').not.toBe('world');
+    const actual = chain(expectMock)("hello").not.toBe("world");
 
-    expect(actual).toContainAllKeys(['toBe', 'not']);
-    expect(actual.not).toContainAllKeys(['toBe']);
+    expect(actual).toContainAllKeys(["toBe", "not"]);
+    expect(actual.not).toContainAllKeys(["toBe"]);
   });
 
-  it('calls original matcher functions when nested matchers are chained', () => {
+  it("calls original matcher functions when nested matchers are chained", () => {
     const toBe = jest.fn();
     const toEqual = jest.fn();
     const notToBe = jest.fn();
@@ -133,36 +130,36 @@ describe('.chain', () => {
       toEqual,
       not: {
         toBe: notToBe,
-        toEqual: notToEqual
-      }
+        toEqual: notToEqual,
+      },
     }));
 
-    chain(expectMock)('hello')
-      .not.toBe('not foo')
-      .toBe('foo')
-      .not.toEqual('not bar')
-      .toEqual('bar')
-      .toBe('baz')
-      .not.toBe('not baz');
+    chain(expectMock)("hello")
+      .not.toBe("not foo")
+      .toBe("foo")
+      .not.toEqual("not bar")
+      .toEqual("bar")
+      .toBe("baz")
+      .not.toBe("not baz");
 
     expect(toBe).toHaveBeenCalledTimes(2);
-    expect(toBe).toHaveBeenCalledWith('foo');
-    expect(toBe).toHaveBeenCalledWith('baz');
+    expect(toBe).toHaveBeenCalledWith("foo");
+    expect(toBe).toHaveBeenCalledWith("baz");
     expect(toEqual).toHaveBeenCalledTimes(1);
-    expect(toEqual).toHaveBeenCalledWith('bar');
+    expect(toEqual).toHaveBeenCalledWith("bar");
 
     expect(notToBe).toHaveBeenCalledTimes(2);
-    expect(notToBe).toHaveBeenCalledWith('not foo');
-    expect(notToBe).toHaveBeenCalledWith('not baz');
+    expect(notToBe).toHaveBeenCalledWith("not foo");
+    expect(notToBe).toHaveBeenCalledWith("not baz");
     expect(notToEqual).toHaveBeenCalledTimes(1);
-    expect(notToEqual).toHaveBeenCalledWith('not bar');
+    expect(notToEqual).toHaveBeenCalledWith("not bar");
   });
 
-  it('calls original expect.extend when custom matcher is registered', () => {
+  it("calls original expect.extend when custom matcher is registered", () => {
     const extendMock = jest.fn();
     const expectMock = jest.fn();
     expectMock.extend = extendMock;
-    const newMatcher = { newMatcher: 'woo' };
+    const newMatcher = { newMatcher: "woo" };
 
     chain(expectMock).extend(newMatcher);
 
@@ -170,34 +167,59 @@ describe('.chain', () => {
     expect(extendMock).toHaveBeenCalledWith(newMatcher);
   });
 
-  it('sets new asymmetric matchers when custom matcher is registered with expect.extend', () => {
+  it("sets new asymmetric matchers when custom matcher is registered with expect.extend", () => {
     const expectMock = () => {};
-    const extendMock = jest.fn(o => Object.assign(expectMock, o));
-    expectMock.a = 'a';
+    const extendMock = jest.fn((o) => Object.assign(expectMock, o));
+    expectMock.a = "a";
     expectMock.extend = extendMock;
-    const newMatcher = { newMatcher: 'woo' };
+    const newMatcher = { newMatcher: "woo" };
 
     const actual = chain(expectMock);
 
-    expect(actual).toContainAllKeys(['a', 'extend']);
+    expect(actual).toContainAllKeys(["a", "extend"]);
 
     actual.extend(newMatcher);
 
     expect(extendMock).toHaveBeenCalledTimes(1);
     expect(extendMock).toHaveBeenCalledWith(newMatcher);
-    expect(actual).toContainAllKeys(['a', 'extend', 'newMatcher']);
+    expect(actual).toContainAllKeys(["a", "extend", "newMatcher"]);
   });
 
-  it('throws error when matcher fails', () => {
+  it("throws error when matcher fails", () => {
     expect.assertions(1);
     const expectMock = jest.fn(() => ({
       toBe: () => {
-        const error = new Error('');
-        error.matcherResult = { message: 'blah', pass: false };
+        const error = new Error("");
+        error.matcherResult = { message: "blah", pass: false };
         throw error;
-      }
+      },
     }));
 
-    expect(() => chain(expectMock)('hello').toBe('hi')).toThrowErrorMatchingInlineSnapshot('"blah"');
+    expect(() => chain(expectMock)("hello").toBe("hi")).toThrowErrorMatchingInlineSnapshot('"blah"');
+  });
+
+  it("throws `matcherResult` message when it is a function", () => {
+    expect.assertions(1);
+    const expectMock = jest.fn(() => ({
+      toBe: () => {
+        const error = new Error("");
+        error.matcherResult = { message: () => "blah", pass: false };
+        throw error;
+      },
+    }));
+
+    expect(() => chain(expectMock)("hello").toBe("hi")).toThrowErrorMatchingInlineSnapshot('"blah"');
+  });
+
+  it("throws error without stack trace when error does not have a `matcherResult`", () => {
+    expect.assertions(1);
+    const expectMock = jest.fn(() => ({
+      toBe: () => {
+        const error = new Error("uh-oh");
+        throw error;
+      },
+    }));
+
+    expect(() => chain(expectMock)("hello").toBe("hi")).toThrowErrorMatchingInlineSnapshot(`"uh-oh"`);
   });
 });
