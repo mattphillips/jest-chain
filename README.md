@@ -18,10 +18,10 @@ Chain Jest matchers together to create one powerful assertion
 [![Roadmap](https://img.shields.io/badge/%F0%9F%93%94-roadmap-CD9523.svg?style=flat-square)](https://github.com/mattphillips/jest-chain/blob/master/docs/ROADMAP.md)
 [![Examples](https://img.shields.io/badge/%F0%9F%92%A1-examples-ff615b.svg?style=flat-square)](https://github.com/mattphillips/jest-chain/blob/master/docs/EXAMPLES.md)
 
-* 🍸 Less code duplication
-* 🤗 Chain core and custom matchers together
-* 👾 Expressive assertions
-* 🚨 Fail fast assertions
+- 🍸 Less code duplication
+- 🤗 Chain core and custom matchers together
+- 👾 Expressive assertions
+- 🚨 Fail fast assertions
 
 ## Problem
 
@@ -32,7 +32,7 @@ assertion.
 For example:
 
 ```js
-it('add 1 and 1', () => {
+it("add 1 and 1", () => {
   const actual = 1 + 1;
   expect(actual).toBe(2);
   expect(actual).toBeGreaterThan(1);
@@ -43,7 +43,7 @@ it('add 1 and 1', () => {
 With `jest-chain` this can instead be written by chaining the matchers together:
 
 ```js
-it('add 1 and 1', () => {
+it("add 1 and 1", () => {
   expect(1 + 1)
     .toBe(2)
     .toBeGreaterThan(1)
@@ -91,8 +91,8 @@ For example:
 
 ```js
 // ./testSetup.js
-require('jest-chain');
-require('any other test framework libraries you are using');
+require("jest-chain");
+require("any other test framework libraries you are using");
 ```
 
 Then in your Jest config:
@@ -103,16 +103,17 @@ Then in your Jest config:
 }
 ```
 
-## Typescript
+### Configure Typescript
 
-If your editor does not recognise the chained jest matchers, add a `global.d.ts` file to your project with:
+Add the following entry to your tsconfig to enable Typescript support.
 
-
-```js
-import 'jest-chain';
+```json
+  "files": ["node_modules/jest-chain/types/index.d.ts"],
 ```
 
-__Note:__ if you are using any other custom matcher libraries then make sure that the `jest-chain` type import is at the bottom so that the types can chain core matchers with your customer matcher library.
+[Example typescript project here](/example/typescript)
+
+**Note:** if you are using any other custom matcher libraries then make sure that the `jest-chain` type import is at the bottom so that the types can chain core matchers with your customer matcher library.
 
 ## Usage
 
@@ -125,34 +126,22 @@ Each of these custom matchers are also chainable.
 Some examples:
 
 ```js
-expect([1, 2, 3])
-  .toHaveLength(3)
-  .toEqual([1, 2, 3]);
+expect([1, 2, 3]).toHaveLength(3).toEqual([1, 2, 3]);
 ```
 
 ```js
 // with jest-extended
-expect([1, 2, 3])
-  .toBeArray()
-  .toBeArrayOfSize(3)
-  .toEqual([1, 2, 3])
-  .toIncludeAnyMembers([1, 2]);
+expect([1, 2, 3]).toBeArray().toBeArrayOfSize(3).toEqual([1, 2, 3]).toIncludeAnyMembers([1, 2]);
 
-expect(100)
-  .toBePositive()
-  .toBeGreaterThan(99)
-  .toBeLessThan(101)
-  .toBeNumber()
-  .not.toBeNaN()
-  .toBe(100);
+expect(100).toBePositive().toBeGreaterThan(99).toBeLessThan(101).toBeNumber().not.toBeNaN().toBe(100);
 
-expect('hello world')
+expect("hello world")
   .toBeString()
-  .toEqualCaseInsensitive('HELLO WORLD')
-  .toStartWith('hello')
-  .toEndWith('world')
-  .not.toInclude('!')
-  .toBe('hello world');
+  .toEqualCaseInsensitive("HELLO WORLD")
+  .toStartWith("hello")
+  .toEndWith("world")
+  .not.toInclude("!")
+  .toBe("hello world");
 ```
 
 **Matcher failures will fail fast from left to right, they have no impact on each other. 🎉**
