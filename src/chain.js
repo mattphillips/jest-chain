@@ -18,6 +18,8 @@ const chainMatchers = (matchers, originalMatchers = matchers) => {
           matcher(...args); // run matcher
           return chainMatchers(originalMatchers); // chain the original matchers again
         } catch (error) {
+          // in case the error is a runtime error,
+          if (!error.matcherResult) throw error;
           throw new JestAssertionError(error.matcherResult, newMatcher);
         }
       };

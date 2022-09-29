@@ -200,4 +200,15 @@ describe('.chain', () => {
 
     expect(() => chain(expectMock)('hello').toBe('hi')).toThrowErrorMatchingInlineSnapshot('"blah"');
   });
+
+  it('throws original error when error is not a failed matcher', () => {
+    expect.assertions(1);
+    const expectMock = jest.fn(() => ({
+      toBe: () => {
+        throw new Error('Original runtime error');
+      }
+    }));
+
+    expect(() => chain(expectMock)('hello').toBe('hi')).toThrowErrorMatchingInlineSnapshot('"Original runtime error"');
+  });
 });
